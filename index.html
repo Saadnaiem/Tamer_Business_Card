@@ -354,7 +354,7 @@
         </div>
 
         <div class="qr-section">
-            <p class="qr-label">Scan to Save Contact</p>
+            <p class="qr-label">Scan to View Profile</p>
             <div class="qr-container">
                 <div id="qrcode"></div>
             </div>
@@ -396,11 +396,11 @@
 
         // Generate QR Code
         const initQRCode = () => {
-            const vCardString = generateVCard();
             const qrElement = document.getElementById("qrcode");
+            const websiteUrl = "https://saad-naiem-ali-business-card.onrender.com/";
             
             new QRCode(qrElement, {
-                text: vCardString,
+                text: websiteUrl,
                 width: 160,
                 height: 160,
                 colorDark: "#111827",
