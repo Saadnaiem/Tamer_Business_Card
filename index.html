@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Business Card</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #f4fbf7; /* Slight green tint / neutral */
+            --bg-gradient: linear-gradient(135deg, #e3f2e9 0%, #f4fbf7 100%);
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --accent-color: #008e43; /* Al Habib Green */
+            --accent-light: #e6f4ec; /* Light greenish accent for hovers */
+            --border-color: #e2e8f0;
+            --btn-hover: #006b32; /* Darker green for hover */
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text-primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            -webkit-font-smoothing: antialiased;
+            position: relative;
+        }
+
+        /* Ambient Background Blobs for polished look */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            width: 300px;
+            height: 300px;
+            background: var(--accent-light);
+            filter: blur(80px);
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0.7;
+            animation: float 8s ease-in-out infinite alternate;
+        }
+        body::after {
+            content: '';
+            position: absolute;
+            bottom: 10%;
+            right: 10%;
+            width: 400px;
+            height: 400px;
+            background: rgba(0, 142, 67, 0.05);
+            filter: blur(100px);
+            border-radius: 50%;
+            z-index: -1;
+            animation: float 10s ease-in-out infinite alternate-reverse;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(-30px) scale(1.05); }
+        }
+
+        .card-wrapper {
+            background-color: var(--card-bg);
+            backdrop-filter: blur(10px);
+            width: 100%;
+            max-width: 440px;
+            border-radius: 28px;
+            box-shadow: 0 40px 80px -20px rgba(0, 142, 67, 0.15), 0 20px 30px -10px rgba(0, 0, 0, 0.04);
+            overflow: hidden;
+            animation: fadeIn 0.8s ease-out;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.7);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card-header {
+            text-align: center;
+            padding: 45px 30px 25px;
+            background: linear-gradient(to bottom, var(--accent-light) 0%, transparent 100%);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .logo-placeholder {
+            width: 250px; /* Increased size */
+            height: auto;
+            max-height: 160px; /* Increased size */
+            border-radius: 12px;
+            object-fit: contain;
+            margin-bottom: 20px;
+            border: none;
+            padding: 0;
+            background-color: transparent;
+            box-shadow: none;
+            transition: var(--transition);
+        }
+
+        .logo-placeholder:hover {
+            transform: scale(1.05);
+        }
+
+        .name {
+            font-size: 26px;
+            font-weight: 700; /* Bold Name */
+            letter-spacing: -0.5px;
+            margin-bottom: 5px;
+        }
+
+        .title {
+            font-size: 16px;
+            font-weight: 600; /* Bold Title */
+            color: var(--accent-color);
+            margin-bottom: 2px;
+        }
+
+        .company {
+            font-size: 15px;
+            color: var(--text-primary);
+            font-weight: 600; /* Bold Company */
+        }
+
+        .contact-info {
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-primary);
+            padding: 14px 18px;
+            border-radius: 16px;
+            background-color: #ffffff;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .contact-item:hover {
+            background-color: var(--accent-light);
+            border-color: var(--accent-color);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 142, 67, 0.08);
+        }
+
+        .contact-item i {
+            font-size: 18px;
+            color: var(--accent-color);
+            width: 44px;
+            height: 44px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+            background-color: var(--accent-light);
+            border-radius: 12px;
+            transition: var(--transition);
+        }
+
+        .contact-item:hover i {
+            background-color: var(--accent-color);
+            color: #ffffff;
+            transform: scale(1.05);
+        }
+
+        .contact-item span {
+            font-size: 15px;
+            font-weight: 600; /* Bold Contact Info */
+        }
+
+        .actions {
+            padding: 0 30px;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 12px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            font-weight: 600; /* Bold Button Text */
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            text-align: center;
+            transition: var(--transition);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-color), var(--btn-hover));
+            color: #ffffff;
+            margin-bottom: 30px;
+            box-shadow: 0 12px 25px rgba(0, 142, 67, 0.25);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 142, 67, 0.4);
+        }
+
+        .qr-section {
+            background: linear-gradient(135deg, var(--btn-hover), var(--accent-color));
+            color: #ffffff;
+            padding: 45px 30px;
+            text-align: center;
+            border-top-left-radius: 36px;
+            border-top-right-radius: 36px;
+            margin-top: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Abstract subtle pattern on QR section */
+        .qr-section::after {
+            content: '';
+            position: absolute;
+            top: 0; right: -50px;
+            width: 200px; height: 200px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .qr-section > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        .qr-label {
+            font-size: 15px;
+            font-weight: 600; /* Bold QR Label */
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .qr-container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 25px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+            transition: var(--transition);
+        }
+
+        .qr-container:hover {
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+        }
+
+        #qrcode {
+            width: 160px;
+            height: 160px;
+        }
+
+        #qrcode img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: #ffffff;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        @media screen and (max-width: 480px) {
+            .card-wrapper {
+                border-radius: 0;
+                box-shadow: none;
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+            }
+            body {
+                padding: 0;
+            }
+            .qr-section {
+                flex-grow: 1;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card-wrapper">
+        <div class="card-header">
+            <img src="logo.png" alt="Company Logo" class="logo-placeholder" onerror="this.src='https://via.placeholder.com/150/0f172a/ffffff?text=Logo'">
+            <h1 class="name" id="profile-name">Saad Naiem Ali</h1>
+            <p class="title" id="profile-title">Category Manager</p>
+            <p class="company" id="profile-company">Al Habib Pharmacy</p>
+        </div>
+
+        <div class="contact-info">
+            <a href="tel:+966565945280" class="contact-item" id="link-phone">
+                <i class="fas fa-phone-alt"></i>
+                <span id="text-phone">+966 56 594 5280</span>
+            </a>
+            <a href="mailto:saad.abdulaah@drsulaimanalhabib.com" class="contact-item" id="link-email">
+                <i class="fas fa-envelope"></i>
+                <span id="text-email">saad.abdulaah@drsulaimanalhabib.com</span>
+            </a>
+            <a href="https://alhabibpharmacy.com/en-sa" target="_blank" class="contact-item" id="link-website">
+                <i class="fas fa-globe"></i>
+                <span>Pharmacy Website</span>
+            </a>
+        </div>
+
+        <div class="actions">
+            <button id="saveContactBtn" class="btn btn-primary">
+                <i class="fas fa-user-plus"></i> Save Contact
+            </button>
+        </div>
+
+        <div class="qr-section">
+            <p class="qr-label">Scan to Save Contact</p>
+            <div class="qr-container">
+                <div id="qrcode"></div>
+            </div>
+            <button id="downloadQrBtn" class="btn btn-outline">
+                <i class="fas fa-download"></i> Download QR Code
+            </button>
+            <div class="footer">
+                &copy; <span id="year"></span> <span class="footer-company">Saad Naiem Ali</span>. All rights reserved.
+            </div>
+        </div>
+    </div>
+
+    <!-- QRCode.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <script>
+        // CONFIGURATION DATA
+        const contactData = {
+            name: "Saad Naiem Ali",
+            title: "Category Manager",
+            company: "Al Habib Pharmacy",
+            phone: "+966 56 594 5280",
+            email: "saad.abdulaah@drsulaimanalhabib.com",
+            website: "https://alhabibpharmacy.com/en-sa"
+        };
+
+        // Utility: Set current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Generate vCard String dynamically
+        const generateVCard = () => {
+            // Adding the "N" (Name) property ensures smartphones save the contact under your person name, not the company name.
+            const nameParts = contactData.name.split(' ');
+            const lastName = nameParts.pop();
+            const firstName = nameParts.join(' ');
+            
+            return `BEGIN:VCARD\nVERSION:3.0\nN:${lastName};${firstName};;;\nFN:${contactData.name}\nORG:${contactData.company}\nTITLE:${contactData.title}\nTEL;TYPE=CELL:${contactData.phone}\nEMAIL:${contactData.email}\nURL:${contactData.website}\nEND:VCARD`;
+        };
+
+        // Generate QR Code
+        const initQRCode = () => {
+            const vCardString = generateVCard();
+            const qrElement = document.getElementById("qrcode");
+            
+            new QRCode(qrElement, {
+                text: vCardString,
+                width: 160,
+                height: 160,
+                colorDark: "#111827",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.M
+            });
+        };
+
+        // Handle Download vCard
+        const handleSaveContact = () => {
+            const vCardString = generateVCard();
+            const blob = new Blob([vCardString], { type: 'text/vcard' });
+            const url = window.URL.createObjectURL(blob);
+            
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'contact.vcf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            window.URL.revokeObjectURL(url);
+        };
+
+        // Handle Download QR Code Image
+        const handleDownloadQR = () => {
+            const qrCanvas = document.querySelector('#qrcode canvas');
+            if (qrCanvas) {
+                const url = qrCanvas.toDataURL("image/png");
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = 'business-card-qr.png';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            } else {
+                // Fallback if rendered as img
+                const qrImg = document.querySelector('#qrcode img');
+                if (qrImg && qrImg.src) {
+                    const link = document.createElement('a');
+                    link.href = qrImg.src;
+                    link.download = 'business-card-qr.png';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                }
+            }
+        };
+
+        // Attach Event Listeners
+        document.addEventListener("DOMContentLoaded", () => {
+            initQRCode();
+            document.getElementById('saveContactBtn').addEventListener('click', handleSaveContact);
+            document.getElementById('downloadQrBtn').addEventListener('click', handleDownloadQR);
+        });
+    </script>
+</body>
+</html>
