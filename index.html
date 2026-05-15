@@ -345,6 +345,10 @@
                 <i class="fas fa-globe"></i>
                 <span>Pharmacy Website</span>
             </a>
+            <a href="https://www.linkedin.com/in/saad-naiem-ali-74716313b" target="_blank" class="contact-item" id="link-linkedin">
+                <i class="fab fa-linkedin-in"></i>
+                <span>LinkedIn Profile</span>
+            </a>
         </div>
 
         <div class="actions">
@@ -378,7 +382,8 @@
             company: "Al Habib Pharmacy | Category Management & Business Developmnt",
             phone: "+966 56 594 5280",
             email: "saad.abdulaah@drsulaimanalhabib.com",
-            website: "https://alhabibpharmacy.com/en-sa"
+            website: "https://alhabibpharmacy.com/en-sa",
+            linkedin: "https://www.linkedin.com/in/saad-naiem-ali-74716313b"
         };
 
         // Utility: Set current year in footer
@@ -391,7 +396,7 @@
             const lastName = nameParts.pop();
             const firstName = nameParts.join(' ');
             
-            return `BEGIN:VCARD\nVERSION:3.0\nN:${lastName};${firstName};;;\nFN:${contactData.name}\nORG:${contactData.company}\nTITLE:${contactData.title}\nTEL;TYPE=CELL:${contactData.phone}\nEMAIL:${contactData.email}\nURL:${contactData.website}\nEND:VCARD`;
+            return `BEGIN:VCARD\nVERSION:3.0\nN:${lastName};${firstName};;;\nFN:${contactData.name}\nORG:${contactData.company}\nTITLE:${contactData.title}\nTEL;TYPE=CELL:${contactData.phone}\nEMAIL:${contactData.email}\nURL:${contactData.website}\nURL:${contactData.linkedin}\nEND:VCARD`;
         };
 
         // Generate QR Code
