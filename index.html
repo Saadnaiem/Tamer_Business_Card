@@ -184,21 +184,6 @@
             transform: scale(1.05);
         }
 
-        /* LinkedIn Branding */
-        #link-linkedin i {
-            color: #0a66c2; /* LinkedIn Corporate Blue */
-            background-color: #ebf4f9;
-        }
-        #link-linkedin:hover {
-            border-color: #0a66c2;
-            background-color: #f3f8fb;
-            box-shadow: 0 10px 20px rgba(10, 102, 194, 0.1);
-        }
-        #link-linkedin:hover i {
-            background-color: #0a66c2;
-            color: #ffffff;
-        }
-
         .contact-item span {
             font-size: 15px;
             font-weight: 600; /* Bold Contact Info */
@@ -342,27 +327,23 @@
     <div class="card-wrapper">
         <div class="card-header">
             <img src="logo.png" alt="Company Logo" class="logo-placeholder" onerror="this.src='https://via.placeholder.com/150/0f172a/ffffff?text=Logo'">
-            <h1 class="name" id="profile-name">Saad Naiem Ali</h1>
-            <p class="title" id="profile-title">Category Manager</p>
-            <p class="company" id="profile-company">Al Habib Pharmacy | Category Management & Business Developmnt</p>
+            <h1 class="name" id="profile-name">Tamer Al Nahhas</h1>
+            <p class="title" id="profile-title">Commercial & Business Development Executive Director</p>
+            <p class="company" id="profile-company">Al Habib Pharmacy</p>
         </div>
 
         <div class="contact-info">
-            <a href="tel:+966565945280" class="contact-item" id="link-phone">
+            <a href="tel:+966507702151" class="contact-item" id="link-phone">
                 <i class="fas fa-phone-alt"></i>
-                <span id="text-phone">+966 56 594 5280</span>
+                <span id="text-phone">+966 50 770 2151</span>
             </a>
-            <a href="mailto:saad.abdulaah@drsulaimanalhabib.com" class="contact-item" id="link-email">
+            <a href="mailto:Tamer.nahhas@drsulaimanalhabib.com" class="contact-item" id="link-email">
                 <i class="fas fa-envelope"></i>
-                <span id="text-email">saad.abdulaah@drsulaimanalhabib.com</span>
+                <span id="text-email">Tamer.nahhas@drsulaimanalhabib.com</span>
             </a>
             <a href="https://alhabibpharmacy.com/en-sa" target="_blank" class="contact-item" id="link-website">
                 <i class="fas fa-globe"></i>
                 <span>Pharmacy Website</span>
-            </a>
-            <a href="https://www.linkedin.com/in/saad-naiem-ali-74716313b" target="_blank" class="contact-item" id="link-linkedin">
-                <i class="fab fa-linkedin-in"></i>
-                <span>LinkedIn Profile</span>
             </a>
         </div>
 
@@ -381,7 +362,7 @@
                 <i class="fas fa-download"></i> Download QR Code
             </button>
             <div class="footer">
-                &copy; <span id="year"></span> <span class="footer-company">Saad Naiem Ali</span>. All rights reserved.
+                &copy; <span id="year"></span> <span class="footer-company">Tamer Al Nahhas</span>. All rights reserved.
             </div>
         </div>
     </div>
@@ -392,13 +373,12 @@
     <script>
         // CONFIGURATION DATA
         const contactData = {
-            name: "Saad Naiem Ali",
-            title: "Category Manager",
-            company: "Al Habib Pharmacy | Category Management & Business Developmnt",
-            phone: "+966 56 594 5280",
-            email: "saad.abdulaah@drsulaimanalhabib.com",
-            website: "https://alhabibpharmacy.com/en-sa",
-            linkedin: "https://www.linkedin.com/in/saad-naiem-ali-74716313b"
+            name: "Tamer Al Nahhas",
+            title: "Commercial & Business Development Executive Director",
+            company: "Al Habib Pharmacy",
+            phone: "+966 50 770 2151",
+            email: "Tamer.nahhas@drsulaimanalhabib.com",
+            website: "https://alhabibpharmacy.com/en-sa"
         };
 
         // Utility: Set current year in footer
@@ -411,7 +391,7 @@
             const lastName = nameParts.pop();
             const firstName = nameParts.join(' ');
             
-            return `BEGIN:VCARD\nVERSION:3.0\nN:${lastName};${firstName};;;\nFN:${contactData.name}\nORG:${contactData.company}\nTITLE:${contactData.title}\nTEL;TYPE=CELL:${contactData.phone}\nEMAIL:${contactData.email}\nURL:${contactData.website}\nURL:${contactData.linkedin}\nEND:VCARD`;
+            return `BEGIN:VCARD\nVERSION:3.0\nN:${lastName};${firstName};;;\nFN:${contactData.name}\nORG:${contactData.company}\nTITLE:${contactData.title}\nTEL;TYPE=CELL:${contactData.phone}\nEMAIL:${contactData.email}\nURL:${contactData.website}\nEND:VCARD`;
         };
 
         // Generate QR Code
